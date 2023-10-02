@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+      function startTime() {
+        let today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+        let t = setTimeout(startTime, 500);
+      }
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+      }
+    </script>
+  </head>
+  <body onload="startTime()">
+    <div class="container">
+        <h1>Bienvenido!</h1>
+        <div class="clock" id="clock"></div>
+        <div class="date">{{ date }}</div>
+    </div>
+    <img src="{{ url_for('static', filename='icon.png') }}" alt="tu imagen" class="image">
+  </body>
+</html>
